@@ -1,0 +1,113 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+    <title>考试选择</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            margin: 0;  
+            padding: 20px;  
+            background-color: #f4f4f4;  
+        }  
+        h2 {  
+            margin-top: 0;  
+            color: #333;  
+        }  
+        select, input {  
+            margin: 20px;
+            width: 60%;  
+            padding: 10px;  
+            border: 1px solid #ccc;  
+            border-radius: 5px;  
+            background-color: #fff;  
+        }  
+        button {  
+            width: 60%;
+            margin: 20px;
+            padding: 10px 20px;  
+            background-color: #4CAF50;  
+            color: white;  
+            border: none;  
+            border-radius: 5px;  
+            cursor: pointer;  
+        }  
+        #yearDropdown, #gradeDropdown, #sessionDropdown {  
+            margin-bottom: 10px;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div>     
+        <h2>我们想要一些必要的信息</h2>   
+        <div style="width: 100%; margin: 50px;">
+            <h3>考试信息</h3>
+            <select id="yearDropdown"></select>  
+            <select id="gradeDropdown"></select>  
+            <select id="sessionDropdown"></select>  
+        </div> 
+        <div style="width: 100%; margin: 50px;">
+            <h3>考生信息</h3>
+            <div style="margin: 10px;">
+                  <input type="text" id="nameInput" placeholder="姓名">  
+                <input type="text" id="examIdInput" placeholder="考生号">  
+                <button id="submitButton" style="text-align: center;margin: auto,0;">提交</button>  
+            </div>
+          
+      
+        </div>
+      
+    </div>  
+</body>  
+
+    <script>
+        // 初始化学年下拉框
+
+        $(document).ready(function() {
+            $.get("/api/getAcademic_year", function(data) {
+                $("#yearDropdown").empty();
+                $.each(data, function(index, year) {
+                    $("#yearDropdown").append($("<option></option>").text(year));
+                });
+            });
+        });
+
+        // 学年改变时获取年级数据并更新年级下拉框
+        $("#yearDropdown").click(function() {
+            console.log('ok');
+            var year = $(this).val();
+            $.get("/api/getGrade?academic_year=" + year, function(data) {
+                $("#gradeDropdown").empty();
+                $.each(data, function(index, grade) {
+                    $("#gradeDropdown").append($("<option></option>").text(grade));
+                });
+            });
+        });
+
+        // 年级改变时获取考试场次数据并更新场次下拉框
+        $("#gradeDropdown").click(function() {
+            var year = $("#yearDropdown").val();
+            var grade = $(this).val();
+            $.get("/api/getSession?grade=" + grade +"&academic_year="+year, function(data) {
+                $("#sessionDropdown").empty();
+                $.each(data, function(index, session) {
+                    $("#sessionDropdown").append($("<option></option>").text(session));
+                });
+            });
+        });
+        $(document).ready(function() {  
+    $('#submitButton').click(function() {  
+        setTimeout(function() {  
+                var year = $("#yearDropdown").val();
+                var grade = $("#gradeDropdown").val();
+                var session = $("#sessionDropdown").val();
+                var name= $("#nameInput").val()
+                var examIdInput= $("#examIdInput").val()
+                window.location.href = "/scores_list?academic_year="+year+"&grade="+grade+"&session="+session+"&name="+name+"&examid="+examIdInput; // 跳转到指定页面  
+        }, 1000); // 延迟 2 秒后跳转  
+    });  
+});
+        
+    </script>
+</body>  
+</html>

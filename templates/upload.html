@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+</head>
+<body>
+    <form action="/api/upload" method="post" enctype="multipart/form-data">
+
+
+        <label for="academic_year">Academic Year:</label>
+        <input type="text" id="academic_year" name="academic_year" required><br><br>
+
+        <label for="grade">Grade:</label>
+        <input type="text" id="grade" name="grade" required><br><br>
+
+
+
+        <label for="session">Session:</label>
+        <input type="text" id="session" name="session" required><br><br>
+
+        <label for="fileName">Name:</label>
+        <input type="text" id="fileName" name="fileName" required><br><br>
+
+        <label for="file">File:</label>
+        <input type="file" id="file" name="file" required><br><br>
+
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>考试成绩</title>
+
+        <link href="../static/layui/css/layui.css" rel="stylesheet">
+        <script src="../static/layui/layui.js"></script>
+        <style>  
+        .score-panel {  
+            border: 1px solid #ccc;  
+            padding: 10px;  
+            margin-bottom: 10px;  
+        }  
+        .score-panel h2 {  
+            font-size: 18px;  
+            margin-top: 0;  
+        }  
+        .score-panel p {  
+            font-size: 14px;  
+        }  
+        .score {  
+            font-weight: bold;  
+        }  
+    </style>
+    </head>
+    <body>
+
+        <fieldset class="layui-elem-field" style="margin: 20px;">
+            <legend>考生信息</legend>
+            <div class="layui-field-box">
+                <h1 style="font-size: 55px;">{{results[0]}}</h1>
+                <h3>考生号：{{results[1]}}</h3>
+            </div>
+        </fieldset>
+        <div style="margin: 20px;">
+            <div class="score-panel layui-panel" style="height: 120px;">
+                <h1>总分</h1>
+                <label style="font-size: 50px">{{results[17]}}</label>
+            </div>
+
+            <div class="score-panel layui-panel">
+                <h1>语文</h1>
+                <h2>{{results[4]}}</h2>
+            </div>
+            <div>
+                <div class="score-panel layui-panel">
+                    <h1>数学</h1>
+                    <h2>{{results[5]}}</h2>
+
+                </div>
+                <div>
+                    <div class="score-panel layui-panel">
+                        <h1>英语</h1>
+                        <h2>{{results[6]}}</h2>
+
+                    </div>
+                    <div>
+                        <div class="score-panel layui-panel">
+                            <h1>历史</h1>
+                            <h2>{{results[8]}}</h2>
+
+                        </div>
+                        <div>
+                            <div class="score-panel layui-panel">
+                                <h1>政治</h1>
+                                <h2>{{results[7]}}</h2>
+
+                            </div>
+                            <div class="score-panel layui-panel">
+                                <h1>地理</h1>
+                                <h2>{{results[10]}}</h2>
+                            </div>
+                            <div class="score-panel layui-panel">
+                                <h1>生物</h1>
+                                <h2>{{results[9]}}</h2>
+                            </div>
+                            <div>
+                                <div class="score-panel layui-panel">
+                                    <h1>物理</h1>
+                                    <h2>{{results[12]}}</h2>
+
+                                </div>
+                                <div>
+                                    <div class="score-panel layui-panel">
+                                        <h1>化学</h1>
+                                        <h2>{{results[11]}}</h2>
+
+                                    </div>
+                                    {% if results[13] != 0 and results[15] != 0 and results[14] != 0 %}
+                                    <fieldset class="layui-elem-field">
+                                        <legend>音信美</legend>
+                                        <div class="layui-field-box">
+                                            <div class="layui-row ">
+                                                <div>
+                                                    <div
+                                                        class="score-panel layui-panel">
+                                                        <h1>音乐</h1>
+                                                        <h2>{{results[13]}}</h2>
+
+                                                    </div>
+                                                    <div>
+                                                        <div
+                                                            class="score-panel layui-panel ">
+                                                            <h1>信息技术</h1>
+                                                            <h2>{{results[14]}}</h2>
+
+                                                        </div>
+                                                        <div>
+                                                            <div
+                                                                class="score-panel layui-panel">
+                                                                <h1>美术</h1>
+                                                                <h2>{{results[15]}}</h2>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                    </fieldset>
+
+                                    {% else %}
+
+                                    {% endif %}
+
+                                                 {% if results[16] != 0 %}
+                                    <div>
+                                        <div
+                                                class="score-panel layui-panel">
+                                            <h1>体育</h1>
+                                            <h2>{{results[16]}}</h2>
+
+                                        </div>
+                                        {% else %}
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                    </div>
+                                            </div>
+
+                                        </body>
+                                    </html>

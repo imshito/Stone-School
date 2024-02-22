@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Progress Demo</title>
+</head>
+<body>
+    <h1>Task ID: {{ task_id }}</h1>
+    <div id="progress-bar" style="width: 200px; height: 30px; background-color: #ddd;"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function getProgress() {
+            $.getJSON('/progress/' + '{{ task_id }}', function(data) {
+                var progressBar = $('#progress-bar');
+                var width = progressBar.width() + (data.progress / 100 * 200);  // 根据进度更新进度条宽度
+                progressBar.width(width);
+            });
+            setTimeout(getProgress, 1000);  // 每秒更新一次进度信息
+        }
+        $(document).ready(function() {
+            getProgress();  // 启动进度更新函数
+        });
+    </script>
+</body>
+</html>
